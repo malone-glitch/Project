@@ -8,7 +8,6 @@
     <script src="https://kit.fontawesome.com/c1df782baf.js"></script>
     <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/2.5.1/uicons-solid-rounded/css/uicons-solid-rounded.css'>
     <link rel="stylesheet" href="style.css">
-
     <style>
         @import url('https://fonts.googleapis.com/css2?family');
 :root{
@@ -505,6 +504,39 @@ header{
     padding: 1rem;
     margin: 0.5rem;
 }
+/* styles.css */
+.video-container {
+    display: flex;
+    justify-content: center; /* Center video horizontally */
+    align-items: center;     /* Center video vertically */
+    height: 100vh;           /* Full viewport height */
+    background-color: "";  /* Background color */
+}
+
+video {
+    border: 5px solid #fff;  /* Add a border */
+    border-radius: 10px;     /* Rounded corners */
+}
+/* styles.css */
+button {
+    background-color: #007bff;  /* Blue background */
+    color: white;               /* White text */
+    border: none;               /* Remove border */
+    border-radius: 5px;         /* Rounded corners */
+    padding: 10px 20px;         /* Padding inside button */
+    font-size: 16px;            /* Font size */
+    cursor: pointer;            /* Pointer cursor on hover */
+    transition: background-color 0.3s ease; /* Smooth background color transition */
+}
+
+button:hover {
+    background-color: #0056b3;  /* Darker blue on hover */
+}
+
+button:focus {
+    outline: none;              /* Remove default focus outline */
+}
+
 
 
 
@@ -613,19 +645,21 @@ header{
                     Possimus numquam veniam porro eius, fugiat ver0 ut ipsum libero</p>
                     <div class="home-btn">
                         <a href="">Book Now</a>
-                        <div class="video-container">
-                            <video id="video" class="video" width="500" poster="doctor-patient-communication.jpg" controls style="display:none;">
-                                <source src="your-video.mp4" type="video/mp4">
-                    
-                            </video>
-                            <!-- Poster image before the video is played -->
-                            <img id="video-poster" src="doctor-patient-communication.jpg" alt="Doctor and Patient Communication" class="image">
-                        </div>
+                        <button id="myButton">Play Video</button>
+                        <script src="script.js"></script>
+                        
                     </div>
+                    
             </div>
 
             <div class="home-right-content">
-                <img src="https://img.freepik.com/free-photo/pleased-young-female-doctor-wearing-medical-robe-stethoscope-around-neck-standing-with-closed-posture_409827-254.jpg?size=626&ext=jpg&ga=GA1.1.2082370165.1716768000&semt=ais_user" alt="">
+                <div class="video-container">
+                    <video id="myVideo" width="640" height="360" controls>
+                        <source src="c:\Users\ADMIN\Downloads\y2mate.com - 1 Health Care System in Hospital Medical Research Innovation Happens Here  Mass General Brigham_1080 (1).mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+            
             </div>
         </div>
     </div>
@@ -734,7 +768,7 @@ header{
             </div>
 
             <div class="doc-poster">
-                <<div class="doc-icons">
+                <div class="doc-icons">
                     <i class="fa-solid fa-share"></i>
                     <i class="fa-solid fa-eye"></i>
                     <i class="fa-solid fa-heart"></i>
@@ -912,6 +946,7 @@ header{
                 Possimus numquam veniam porro eius, fugiat ver0 ut ipsum libero</p>
         </div>
     </div>
+
         </div>
 
 
@@ -985,7 +1020,82 @@ header{
 
     <!--footer ended-->
 
-    <script src="script.js"></script>
+    <script >
+
+        let menubar = document.querySelector('#menu-bars');
+let navbar = document.querySelector('.navbar');
+
+menubar.onclick = () =>{
+    menubar.classList.toggle('fa-times');
+    navbar.classList.toggle('active')
+}
+
+
+
+
+
+// Counter animation
+const counters = document.querySelectorAll('.counter');
+const speed = 200; // Animation speed
+
+counters.forEach(counter => {
+    const updateCount = () => {
+        const target = +counter.getAttribute('data-target');
+        const count = +counter.innerText;
+        
+        // Calculate increment
+        const increment = target / speed;
+
+        // If current count is less than target, increment it
+        if (count < target) {
+            counter.innerText = Math.ceil(count + increment);
+            setTimeout(updateCount, 10); // Adjust delay for smoothness
+        } else {
+            counter.innerText = target; // Ensure exact target number is shown
+        }
+    };
+
+    // Trigger the animation
+    updateCount();
+});
+
+
+// script.js
+document.addEventListener('DOMContentLoaded', function() {
+    const button = document.getElementById('myButton');
+
+    button.addEventListener('click', function() {
+        alert('Button was clicked!');
+    });
+});
+
+
+
+// script.js
+document.addEventListener('DOMContentLoaded', function() {
+    const video = document.getElementById('myVideo');
+
+    // Play the video automatically
+    video.play();
+
+    // Event listener for when the video ends
+    video.addEventListener('ended', function() {
+        alert('The video has ended.');
+    });
+
+    // Example of toggling play/pause
+    document.addEventListener('keypress', function(event) {
+        if (event.key === ' ') { // Space bar
+            if (video.paused) {
+                video.play();
+            } else {
+                video.pause();
+            }
+        }
+    });
+});
+
+    </script>
     
 </body>
 </html>
